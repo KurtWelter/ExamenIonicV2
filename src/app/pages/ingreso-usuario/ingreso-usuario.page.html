@@ -1,0 +1,64 @@
+<ion-content>
+  <ion-card class="login-card">
+    <div class="image-container">
+      <img src="../../../assets/imagenes/Duoc.png" alt="Logo Duoc" />
+    </div>
+    <ion-card-header>
+      <ion-card-title>Iniciar Sesión</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Nombre de usuario</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="username"
+            name="username"
+            (focus)="usernameTouched = true"
+            (blur)="onFieldBlur('username')"
+            required
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="usernameTouched && username.trim() === ''"
+          class="error-message"
+        >
+          Por favor, ingrese un nombre de usuario.
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            (focus)="passwordTouched = true"
+            (blur)="onFieldBlur('password')"
+            required
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="passwordTouched && password.trim() === ''"
+          class="error-message"
+        >
+          Por favor, ingrese una contraseña.
+        </div>
+
+        <ion-button
+          expand="full"
+          color="primary"
+          type="submit"
+          (click)="onSubmit()"
+        >
+          Iniciar Sesión
+        </ion-button>
+      </form>
+      <a
+        [routerLink]="['/restablecer-contrasena']"
+        class="restablecer-contrasena-link"
+      >
+        ¿Olvidaste tu contraseña?
+      </a>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

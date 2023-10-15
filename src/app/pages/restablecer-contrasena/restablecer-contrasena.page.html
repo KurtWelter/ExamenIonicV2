@@ -1,0 +1,46 @@
+<form (ngSubmit)="onSubmit()" class="custom-form">
+  <div class="image-container">
+    <img src="../../../assets/imagenes/Duoc.png" alt="Logo Duoc" />
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre de Usuario</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="username"
+      name="username"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nueva Contraseña</mat-label>
+    <input
+      matInput
+      type="password"
+      [(ngModel)]="newPassword"
+      name="newPassword"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Confirmar Contraseña</mat-label>
+    <input
+      matInput
+      type="password"
+      [(ngModel)]="confirmPassword"
+      name="confirmPassword"
+      required
+    />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [routerLink]="['/ingreso-usuario']"
+  >
+    Restablecer Contraseña
+  </button>
+</form>
