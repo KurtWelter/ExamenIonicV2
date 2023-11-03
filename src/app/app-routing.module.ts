@@ -26,6 +26,14 @@ const routes: Routes = [
         './pages/restablecer-contrasena/restablecer-contrasena.module'
       ).then((m) => m.RestablecerContrasenaPageModule),
   },
+  {
+    path: 'main',
+    loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule)
+  },
+  {
+    path: 'posts',
+    loadChildren: () => import('./posts/posts.module').then( m => m.PostsPageModule)
+  },
 ];
 
 @NgModule({

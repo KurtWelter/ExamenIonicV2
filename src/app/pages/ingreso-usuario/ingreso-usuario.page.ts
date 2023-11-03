@@ -11,19 +11,32 @@ export class IngresoUsuarioPage {
   password: string = '';
   usernameTouched: boolean = false;
   passwordTouched: boolean = false;
+  errorMessages: any = {}; // Para almacenar mensajes de error
 
   constructor(private router: Router) {}
 
   onSubmit() {
-    // Resto del código de autenticación
+    // Reiniciar los mensajes de error
+    this.errorMessages = {};
 
-    // Simulación de autenticación exitosa con credenciales "admin/admin"
-    if (this.username === 'admin' && this.password === 'admin') {
-      console.log('Inicio de sesión exitoso.');
-      // Redirige a la página principal (puedes cambiar la ruta según tu aplicación)
-      this.router.navigate(['/home']);
-    } else {
-      console.log('Credenciales incorrectas. Inténtalo de nuevo.');
+    if (!this.username) {
+      this.errorMessages.username = 'Debes ingresar un nombre de usuario.';
+    }
+
+    if (!this.password) {
+      this.errorMessages.password = 'Debes ingresar una contraseña.';
+    }
+
+    if (this.username && this.password) {
+      if (this.username === 'admin' && this.password === 'admin') {
+        console.log('Inicio de sesión exitoso.');
+        this.router.navigate(['main'], {
+          state: { username: this.username },
+        });
+      } else {
+        this.errorMessages.auth =
+          'Credenciales incorrectas. Inténtalo de nuevo.';
+      }
     }
   }
 
@@ -34,6 +47,7 @@ export class IngresoUsuarioPage {
       this.passwordTouched = true;
     }
   }
+
   navigateToRestablecerContrasena() {
     this.router.navigate(['restablecer-contrasena']);
   }

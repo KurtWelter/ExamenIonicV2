@@ -19,13 +19,9 @@
             required
           ></ion-input>
         </ion-item>
-        <div
-          *ngIf="usernameTouched && username.trim() === ''"
-          class="error-message"
-        >
-          Por favor, ingrese un nombre de usuario.
+        <div *ngIf="errorMessages.username" class="error-message">
+          {{ errorMessages.username }}
         </div>
-
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
           <ion-input
@@ -37,13 +33,9 @@
             required
           ></ion-input>
         </ion-item>
-        <div
-          *ngIf="passwordTouched && password.trim() === ''"
-          class="error-message"
-        >
-          Por favor, ingrese una contraseña.
+        <div *ngIf="errorMessages.password" class="error-message">
+          {{ errorMessages.password }}
         </div>
-
         <ion-button
           expand="full"
           color="primary"
@@ -53,6 +45,9 @@
           Iniciar Sesión
         </ion-button>
       </form>
+      <div *ngIf="errorMessages.auth" class="error-message">
+        {{ errorMessages.auth }}
+      </div>
       <a
         [routerLink]="['/restablecer-contrasena']"
         class="restablecer-contrasena-link"

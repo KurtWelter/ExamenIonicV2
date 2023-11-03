@@ -61,3 +61,9 @@ form {
   display: block; /* Evita espacios no deseados alrededor de la imagen */
   margin: 0 auto; /* Centra la imagen */
 }
+.error-message {
+  color: #ff0000; /* Color rojo para los mensajes de error */
+  font-size: 14px;
+  margin-top: 5px; /* Espacio superior entre el campo y el mensaje de error */
+  text-align: left; /* Alineación del mensaje a la izquierda */
+}
