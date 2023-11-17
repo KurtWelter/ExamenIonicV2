@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/User';
+import { RolesService } from 'src/app/services/roles.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-ingreso-usuario',
@@ -7,42 +10,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./ingreso-usuario.page.scss'],
 })
 export class IngresoUsuarioPage {
-  username: string = '';
-  password: string = '';
-  usernameTouched: boolean = false;
+  email: string = 'a@gmail.com';
+  password: string = '1';
+  emailTouched: boolean = false;
   passwordTouched: boolean = false;
   errorMessages: any = {}; // Para almacenar mensajes de error
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private rolesService: RolesService,
+    private usersService: UsersService
+  ) {}
 
-  onSubmit() {
+  async onSubmit() {
     // Reiniciar los mensajes de error
     this.errorMessages = {};
 
-    if (!this.username) {
-      this.errorMessages.username = 'Debes ingresar un nombre de usuario.';
+    if (!this.email) {
+      this.errorMessages.email = 'Debes ingresar un nombre de usuario.';
     }
 
     if (!this.password) {
       this.errorMessages.password = 'Debes ingresar una contraseña.';
     }
 
-    if (this.username && this.password) {
-      if (this.username === 'admin' && this.password === 'admin') {
-        console.log('Inicio de sesión exitoso.');
-        this.router.navigate(['main'], {
-          state: { username: this.username },
-        });
+    if (this.email && this.password) {
+      const user: User = await this.usersService.login(
+        this.email,
+        this.password
+      );
+      console.log(user.roleId);
+      if (user.roleId == 2) {
+        this.router.navigate(['main']);
+      } else if (user.roleId == 1) {
+        this.router.navigate(['vista-profe']);
       } else {
-        this.errorMessages.auth =
-          'Credenciales incorrectas. Inténtalo de nuevo.';
       }
     }
   }
 
   onFieldBlur(field: string) {
-    if (field === 'username') {
-      this.usernameTouched = true;
+    if (field === 'email') {
+      this.emailTouched = true;
     } else if (field === 'password') {
       this.passwordTouched = true;
     }
@@ -50,5 +59,9 @@ export class IngresoUsuarioPage {
 
   navigateToRestablecerContrasena() {
     this.router.navigate(['restablecer-contrasena']);
+  }
+
+  bringroles() {
+    this.rolesService.getRoles();
   }
 }

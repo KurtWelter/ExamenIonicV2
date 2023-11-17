@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DjangoService } from './django.service';
+import { AsistenciaService } from './asistencia.service';
 
-describe('DjangoService', () => {
-  let service: DjangoService;
+describe('AsistenciaService', () => {
+  let service: AsistenciaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DjangoService);
+    service = TestBed.inject(AsistenciaService);
   });
 
   it('should be created', () => {

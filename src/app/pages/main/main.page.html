@@ -1,5 +1,30 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Bienvenido, {{ username }}</ion-title>
+  <ion-toolbar>
+    <ion-title>Bienvenido Estudiante: {{name}}</ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <ion-card class="custom-card">
+    <ion-card-header>
+      <ion-card-title class="centered-title">Asistencia</ion-card-title>
+    </ion-card-header>
+    <ion-button
+      class="custom-button"
+      expand="block"
+      size="small"
+      color="warning"
+      (click)="Asistencia()"
+    >
+      Ir a Asistencia
+    </ion-button>
+  </ion-card>
+  <ion-card class="custom-card">
+    <img alt="Camara Scan" src="../../../assets/imagenes/camerass.PNG" />
+    <ion-card-header>
+      <ion-button class="centered-button" fill="clear" color="black">
+        QR SCAN
+      </ion-button>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

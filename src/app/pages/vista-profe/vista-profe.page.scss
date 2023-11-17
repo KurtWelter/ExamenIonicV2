@@ -1,0 +1,26 @@
+.custom-card {
+  margin: 20px; /* Ejemplo de margen */
+  border-radius: 8px; /* Borde redondeado */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  background: linear-gradient(45deg, rgb(150, 13, 13), #ff9800);
+}
+
+.custom-button {
+  font-size: 14px; /* Tamaño de fuente */
+  background-color: #4caf50; /* Color de fondo verde */
+  color: white; /* Color del texto */
+}
+ion-card-subtitle {
+  color: black; /* Cambiar el color del texto a negro */
+}
+ion-title {
+  color: black; /* Cambiar el color del texto a negro */
+}
+
+ion-toolbar {
+  --background: linear-gradient(
+    45deg,
+    rgb(150, 13, 13),
+    #ff9800
+  ); /* Gradiente de colores */
+}

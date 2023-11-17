@@ -28,11 +28,20 @@ const routes: Routes = [
   },
   {
     path: 'main',
-    loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule)
+    loadChildren: () =>
+      import('./pages/main/main.module').then((m) => m.MainPageModule),
   },
   {
-    path: 'posts',
-    loadChildren: () => import('./posts/posts.module').then( m => m.PostsPageModule)
+    path: 'vista-profe',
+    loadChildren: () => import('./pages/vista-profe/vista-profe.module').then( m => m.VistaProfePageModule)
+  },
+  {
+    path: 'iniciar-clase',
+    loadChildren: () => import('./pages/iniciar-clase/iniciar-clase.module').then( m => m.IniciarClasePageModule)
+  },
+  {
+    path: 'asistencia',
+    loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
   },
 ];
 

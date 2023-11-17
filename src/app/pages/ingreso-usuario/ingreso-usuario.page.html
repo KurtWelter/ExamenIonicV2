@@ -1,7 +1,12 @@
 <ion-content>
   <ion-card class="login-card">
     <div class="image-container">
-      <img src="../../../assets/imagenes/Duoc.png" alt="Logo Duoc" />
+      <ion-card class="custom-card">
+        <ion-img
+          src="../../../assets/imagenes/Duoc.png"
+          alt="Logo Duoc"
+        ></ion-img>
+      </ion-card>
     </div>
     <ion-card-header>
       <ion-card-title>Iniciar Sesión</ion-card-title>
@@ -9,18 +14,18 @@
     <ion-card-content>
       <form (ngSubmit)="onSubmit()">
         <ion-item>
-          <ion-label position="floating">Nombre de usuario</ion-label>
+          <ion-label position="floating">Email</ion-label>
           <ion-input
             type="text"
-            [(ngModel)]="username"
-            name="username"
-            (focus)="usernameTouched = true"
-            (blur)="onFieldBlur('username')"
+            [(ngModel)]="email"
+            name="email"
+            (focus)="emailTouched = true"
+            (blur)="onFieldBlur('email')"
             required
           ></ion-input>
         </ion-item>
-        <div *ngIf="errorMessages.username" class="error-message">
-          {{ errorMessages.username }}
+        <div *ngIf="errorMessages.email" class="error-message">
+          {{ errorMessages.email }}
         </div>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>

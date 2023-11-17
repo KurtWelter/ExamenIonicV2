@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/User';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-main',
@@ -7,16 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-  username: string = '';
+  name: string = '';
+  user?: User;
 
-  constructor(private router: Router) {
-    const state = this.router.getCurrentNavigation()?.extras.state;
-    if (state && state['username']) {
-      this.username = state['username'];
-    }
-  }
+  constructor(private router: Router, private userService: UsersService) {}
 
   ngOnInit() {
-    // Aquí puedes obtener el nombre de usuario desde tu servicio o donde lo tengas almacenado
+    if (this.userService.user) {
+      this.user = this.userService.user;
+      this.name = this.userService.user?.name;
+    }
+  }
+  Asistencia() {
+    this.router.navigate(['asistencia']);
   }
 }
