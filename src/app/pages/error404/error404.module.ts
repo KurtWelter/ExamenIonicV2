@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AsistenciaPageRoutingModule } from './asistencia-routing.module';
+import { Error404PageRoutingModule } from './error404-routing.module';
 
-import { AsistenciaPage } from './asistencia.page';
+import { Error404Page } from './error404.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AsistenciaPageRoutingModule
+    Error404PageRoutingModule
   ],
-  declarations: [AsistenciaPage]
+  declarations: [Error404Page]
 })
-export class AsistenciaPageModule {}
+export class Error404PageModule {}

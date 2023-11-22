@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -30,18 +31,30 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () =>
       import('./pages/main/main.module').then((m) => m.MainPageModule),
+    //canActivate: [AuthGuard],
   },
   {
     path: 'vista-profe',
-    loadChildren: () => import('./pages/vista-profe/vista-profe.module').then( m => m.VistaProfePageModule)
+    loadChildren: () =>
+      import('./pages/vista-profe/vista-profe.module').then(
+        (m) => m.VistaProfePageModule
+      ),
+    //canActivate: [AuthGuard],
   },
   {
     path: 'iniciar-clase',
-    loadChildren: () => import('./pages/iniciar-clase/iniciar-clase.module').then( m => m.IniciarClasePageModule)
+    loadChildren: () =>
+      import('./pages/iniciar-clase/iniciar-clase.module').then(
+        (m) => m.IniciarClasePageModule
+      ),
   },
+
   {
-    path: 'asistencia',
-    loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
+    path: '**',
+    loadChildren: () =>
+      import('./pages/error404/error404.module').then(
+        (m) => m.Error404PageModule
+      ),
   },
 ];
 

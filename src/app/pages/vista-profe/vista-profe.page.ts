@@ -14,7 +14,7 @@ export class VistaProfePage implements OnInit {
   user?: User;
 
   constructor(
-    private router: Router,
+    public router: Router,
     http: HttpClient,
     private userService: UsersService
   ) {

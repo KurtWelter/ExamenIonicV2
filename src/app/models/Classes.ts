@@ -1,4 +1,4 @@
 export interface classes {
-  date: Date;
-  subject: String;
+  date: string;
+  subject: string;
 }
