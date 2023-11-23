@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { UsersService } from 'src/app/services/users.service';
+import { ClassAtendanceService } from 'src/app/services/class-atendance.service';
+import { Classes } from 'src/app/models/Classes';
 
 @Component({
   selector: 'app-vista-profe',
@@ -10,25 +12,27 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./vista-profe.page.scss'],
 })
 export class VistaProfePage implements OnInit {
-  name: string = '';
+  name?: string = '';
   user?: User;
+  classes?: Classes[];
 
   constructor(
     public router: Router,
     http: HttpClient,
-    private userService: UsersService
+    private userService: UsersService,
+    private classAtendanceService: ClassAtendanceService
   ) {
     const state = this.router.getCurrentNavigation()?.extras.state;
   }
 
   ngOnInit() {
-    if (this.userService.user) {
-      this.user = this.userService.user;
-      this.name = this.userService.user?.name;
-    }
+    this.getClasses();
+    this.name = this.userService.user?.name;
   }
-
-  iniciarClase() {
-    this.router.navigate(['iniciar-clase']);
+  navigateToSiguientePagina(id: number) {
+    this.router.navigate(['iniciar-clase', id]);
+  }
+  async getClasses() {
+    this.classes = await this.classAtendanceService.getClasses();
   }
 }

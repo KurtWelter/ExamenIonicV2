@@ -42,7 +42,7 @@ const routes: Routes = [
     //canActivate: [AuthGuard],
   },
   {
-    path: 'iniciar-clase',
+    path: 'iniciar-clase/:id',
     loadChildren: () =>
       import('./pages/iniciar-clase/iniciar-clase.module').then(
         (m) => m.IniciarClasePageModule
@@ -50,11 +50,16 @@ const routes: Routes = [
   },
 
   {
-    path: '**',
+    path: 'asistencia',
     loadChildren: () =>
       import('./pages/error404/error404.module').then(
         (m) => m.Error404PageModule
       ),
+  },
+  {
+    path: 'qr',
+    loadChildren: () =>
+      import('./pages/qr/qr.module').then((m) => m.QrPageModule),
   },
 ];
 

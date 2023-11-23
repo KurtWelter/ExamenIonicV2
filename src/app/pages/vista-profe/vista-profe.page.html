@@ -5,18 +5,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="custom-card">
+  <ion-card class="custom-card" *ngFor="let class of classes">
     <ion-card-header>
-      <ion-card-subtitle>Profesor: {{name}}</ion-card-subtitle>
-      <br />
-      <ion-card-title>Programación de Aplicaciones Móviles</ion-card-title>
+      <ion-card-title>{{class.subject}}</ion-card-title>
     </ion-card-header>
     <ion-button
       class="custom-button"
       expand="block"
       size="small"
       color="warning"
-      (click)="iniciarClase()"
+      (click)="navigateToSiguientePagina(class.id)"
     >
       Iniciar Clase
     </ion-button>

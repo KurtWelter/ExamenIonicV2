@@ -1,0 +1,18 @@
+<ion-content
+  [fullscreen]="true"
+  [style.--background]="scanActivate?'#00000000':'#ffffff'"
+>
+  <ion-row class="scan-button" [hidden]="!scanActivate">
+    <ion-col class="ion-no-padding">
+      <ion-button
+        expand="full"
+        (click)="startScanner()"
+        [hidden]="scanActivate"
+      >
+        SCAN
+      </ion-button>
+      <ion-button expand="full" (click)="stopScanner()">Stop</ion-button>
+    </ion-col>
+  </ion-row>
+  <div class="scan-box" [hidden]="!scanActivate"></div>
+</ion-content>

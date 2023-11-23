@@ -23,4 +23,8 @@ export class MainPage implements OnInit {
   Asistencia() {
     this.router.navigate(['asistencia']);
   }
+
+  qr() {
+    this.router.navigate(['qr']);
+  }
 }
