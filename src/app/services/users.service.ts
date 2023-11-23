@@ -14,7 +14,7 @@ export class UsersService {
   user?: User;
 
   constructor(private http: HttpClient) {}
-  url = 'http://127.0.0.1:3000/login'; // Reemplaza con la URL de la API que deseas consultar
+  url = 'https://spsgftc7-3000.brs.devtunnels.ms/'; // http://127.0.0.1:3000/login
 
   async login(email: string, password: string): Promise<User> {
     return new Promise<User>((resolve, reject) => {
