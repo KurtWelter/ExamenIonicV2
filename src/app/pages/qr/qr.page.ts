@@ -16,6 +16,16 @@ export class QrPage {
     private userService: UsersService
   ) {}
 
+  async enviarCorreo() {
+    const body = `Estimado profesor,\n\nEl alumno ha escaneado exitosamente el código QR.\n\nAtentamente,\n${this.userService.user?.name}\n${this.userService.user?.lastName}\n${this.userService.user?.secondSurname}`;
+
+    const emailLink = `mailto:MailtoSebastian3@gmail.com?subject=Confirmación%20de%20escaneo%20de%20QR&body=${encodeURIComponent(
+      body
+    )}`;
+
+    window.open(emailLink, '_self');
+  }
+
   async checkPermission() {
     return new Promise(async (resolve, reject) => {
       const status = await BarcodeScanner.checkPermission({ force: true });
@@ -50,7 +60,7 @@ export class QrPage {
         alert(
           `SE HA REGISTRADO CORRECTAMENTE SU CLASE ${respuesta.subject} ${respuesta.date}`
         ); // el contenido del qr vendra por aqui
-
+        this.enviarCorreo();
         //Manejo la data como yo lo quiera.
       } else {
         alert('NO DATA FOUND!');

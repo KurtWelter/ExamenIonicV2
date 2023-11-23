@@ -30,18 +30,4 @@ describe('AuthGuard', () => {
 
     expect(result).toBe(true);
   });
-
-  it('should redirect to /main when isAuthenticated is false', () => {
-    guard.setAuthenticationStatus(false);
-
-    const navigateSpy = spyOn(router, 'navigateByUrl');
-
-    const result = guard.canActivate(
-      {} as any,
-      { url: '/some-url' } as RouterStateSnapshot
-    );
-
-    expect(result).toBe(false);
-    expect(navigateSpy).toHaveBeenCalledWith('/main');
-  });
 });

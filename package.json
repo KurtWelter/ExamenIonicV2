@@ -33,6 +33,7 @@
     "@ionic/storage-angular": "^4.0.0",
     "@techiediaries/ngx-qrcode": "^9.1.0",
     "angularx-qrcode": "^16.0.2",
+    "capacitor-email-composer": "^2.0.1",
     "ionicons": "^7.0.0",
     "ngx-qrcode": "^0.1.0-rc.1",
     "rxjs": "~7.8.0",

@@ -29,16 +29,16 @@ describe('UsersService', () => {
 
   it('should call login and return a user', (done: DoneFn) => {
     const mockUser: User = {
-      id: 1,
-      name: 'John Doe',
-      email: 'john@example.com',
-      lastName: '',
-      password: '',
-      roleId: 0,
-      secondSurname: '',
+      id: 2,
+      name: 'Alfredo',
+      email: 'a@gmail.com',
+      lastName: 'Muñoz',
+      password: '2',
+      roleId: 2,
+      secondSurname: 'Brenning',
     };
-    const email = 'john@example.com';
-    const password = 'password123';
+    const email = 'a@gmail.com';
+    const password = '2';
 
     service.login(email, password).then((user: User) => {
       expect(user).toEqual(mockUser);
@@ -52,8 +52,8 @@ describe('UsersService', () => {
   });
 
   it('should handle an error when login fails', (done: DoneFn) => {
-    const email = 'john@example.com';
-    const password = 'password123';
+    const email = 'a@gmail.com';
+    const password = '2';
 
     service.login(email, password).catch((error: any) => {
       expect(error).toBeTruthy();

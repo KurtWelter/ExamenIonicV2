@@ -13,13 +13,13 @@ describe('MainPage', () => {
   let userService: UsersService;
 
   const mockUser: User = {
-    id: 1,
-    name: 'John Doe',
-    email: '',
-    lastName: '',
-    password: '',
-    roleId: 0,
-    secondSurname: '',
+    id: 2,
+    name: 'Alfredo',
+    email: 'a@gmail.com',
+    lastName: 'Muñoz',
+    password: '2',
+    roleId: 2,
+    secondSurname: 'Brenning',
   };
 
   beforeEach(async () => {

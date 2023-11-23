@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RestablecerContrasenaPage } from './restablecer-contrasena.page';
 import { Router } from '@angular/router';
+import { RestablecerContrasenaPage } from './restablecer-contrasena.page';
 
 describe('RestablecerContrasenaPage', () => {
   let component: RestablecerContrasenaPage;
@@ -24,31 +24,27 @@ describe('RestablecerContrasenaPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should navigate to ingreso-usuario page when passwords match', () => {
-    const routerSpy = spyOn(router, 'navigate');
+  it('should redirect to ingreso-usuario when passwords match', () => {
+    spyOn(router, 'navigate');
 
-    component.username = 'exampleUser';
-    component.newPassword = 'newPassword';
-    component.confirmPassword = 'newPassword'; // Matching passwords
+    component.newPassword = 'newPassword123';
+    component.confirmPassword = 'newPassword123';
 
     component.onSubmit();
-    expect(routerSpy).toHaveBeenCalledWith(['/ingreso-usuario']);
+
+    expect(router.navigate).toHaveBeenCalledWith(['/ingreso-usuario']);
   });
 
-  it('should log an error when passwords do not match', () => {
-    const routerSpy = spyOn(router, 'navigate');
+  it('should not redirect when passwords do not match', () => {
+    spyOn(console, 'error');
+    spyOn(router, 'navigate');
 
-    component.username = 'exampleUser';
-    component.newPassword = 'newPassword';
-    component.confirmPassword = 'differentPassword'; // Non-matching passwords
-
-    // Spy on console.error to check if it's called when passwords don't match
-    const consoleErrorSpy = spyOn(console, 'error');
+    component.newPassword = 'newPassword123';
+    component.confirmPassword = 'differentPassword';
 
     component.onSubmit();
-    expect(routerSpy).not.toHaveBeenCalled(); // No navigation
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      'Las contraseñas no coinciden.'
-    );
+
+    expect(console.error).toHaveBeenCalledWith('Las contraseñas no coinciden.');
+    expect(router.navigate).not.toHaveBeenCalled();
   });
 });

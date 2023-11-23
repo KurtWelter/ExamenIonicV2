@@ -2,53 +2,49 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VistaProfePage } from './vista-profe.page';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UsersService } from 'src/app/services/users.service';
-import { of } from 'rxjs';
-import { User } from 'src/app/models/User';
+import { ClassAtendanceService } from 'src/app/services/class-atendance.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VistaProfePage', () => {
   let component: VistaProfePage;
   let fixture: ComponentFixture<VistaProfePage>;
-  let userService: jasmine.SpyObj<UsersService>;
-  const mockUser: User = {
-    id: 1,
-    name: 'John Doe',
-    email: '',
-    lastName: '',
-    password: '',
-    roleId: 0,
-    secondSurname: '',
-  };
+  let userService: Partial<UsersService>;
+  let classAtendanceService: Partial<ClassAtendanceService>;
 
   beforeEach(async () => {
-    const userServiceSpy = jasmine.createSpyObj('UsersService', ['login']);
-    (userServiceSpy.login as jasmine.Spy).and.returnValue(of(mockUser));
+    userService = {
+      user: {
+        id: 1,
+        name: 'Kurt',
+        email: 'MailtoSebastian3@gmail.com',
+        lastName: 'KKK',
+        password: '1',
+        roleId: 1,
+        secondSurname: 'sss',
+      },
+    };
 
     await TestBed.configureTestingModule({
       declarations: [VistaProfePage],
-      imports: [RouterTestingModule],
-      providers: [{ provide: UsersService, useValue: userServiceSpy }],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers: [
+        { provide: UsersService, useValue: userService },
+        { provide: ClassAtendanceService, useValue: classAtendanceService },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(VistaProfePage);
     component = fixture.componentInstance;
-    userService = TestBed.inject(UsersService) as jasmine.SpyObj<UsersService>;
-  });
-
-  it('should create the component', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should initialize user data from the service', () => {
     fixture.detectChanges();
-
-    expect(userService.login).toHaveBeenCalled();
-    expect(component.user).toEqual(mockUser);
-    expect(component.name).toBe(mockUser.name);
   });
 
-  it('should navigate to iniciar-clase page when iniciarClase() is called', () => {
-    const routerSpy = spyOn(component.router, 'navigate');
-    component.iniciarClase();
-    expect(routerSpy).toHaveBeenCalledWith(['iniciar-clase']);
+  it('should initialize with user name and classes', () => {
+    expect(component.name).toEqual('Kurt'); // Comprobar si el nombre del usuario se ha asignado correctamente
+
+    component.ngOnInit();
+
+    expect(component.classes?.length).toEqual(2); // Comprobar si se han cargado las clases
+    expect(component.classes?.[0]?.id).toEqual(1); // Verificar la primera clase
+    expect(component.classes?.[1]?.id).toEqual(2); // Verificar la segunda clase
   });
 });

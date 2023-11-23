@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
-import { RolesService } from 'src/app/services/roles.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -10,17 +9,13 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./ingreso-usuario.page.scss'],
 })
 export class IngresoUsuarioPage {
-  email: string = 'a@gmail.com';
-  password: string = '1';
+  email: string = '';
+  password: string = '';
   emailTouched: boolean = false;
   passwordTouched: boolean = false;
   errorMessages: any = {}; // Para almacenar mensajes de error
 
-  constructor(
-    private router: Router,
-    private rolesService: RolesService,
-    private usersService: UsersService
-  ) {}
+  constructor(private router: Router, private usersService: UsersService) {}
 
   async onSubmit() {
     // Reiniciar los mensajes de error
@@ -44,7 +39,16 @@ export class IngresoUsuarioPage {
         this.router.navigate(['main']);
       } else if (user.roleId == 1) {
         this.router.navigate(['vista-profe']);
-      } else {
+      } else if (user.roleId == 3) {
+        this.router.navigate(['main']);
+      } else if (user.roleId == 4) {
+        this.router.navigate(['main']);
+      } else if (user.roleId == 5) {
+        this.router.navigate(['main']);
+      } else if (user.roleId == 6) {
+        this.router.navigate(['main']);
+      } else if (user.roleId == 7) {
+        this.router.navigate(['vista-profe']);
       }
     }
   }
@@ -59,9 +63,5 @@ export class IngresoUsuarioPage {
 
   navigateToRestablecerContrasena() {
     this.router.navigate(['restablecer-contrasena']);
-  }
-
-  bringroles() {
-    this.rolesService.getRoles();
   }
 }

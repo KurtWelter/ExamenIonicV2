@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IniciarClasePage } from './iniciar-clase.page';
 import { User } from 'src/app/models/User';
-import { classes } from 'src/app/models/Classes';
+import { Classes } from 'src/app/models/Classes';
 
 describe('IniciarClasePage', () => {
   let component: IniciarClasePage;
@@ -22,12 +22,12 @@ describe('IniciarClasePage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set myAngularxQrCode to "Missing information" if user or classes are not defined', () => {
+  it('should set myAngularxQrCode to "Missing information" if user or Classes are not defined', () => {
     component.ngOnInit();
     expect(component.myAngularxQrCode).toBe('Missing information');
   });
 
-  it('should set myAngularxQrCode correctly if user and classes are defined', () => {
+  it('should set myAngularxQrCode correctly if user and Classes are defined', () => {
     const mockUser: User = {
       name: 'John Doe',
       email: '',
@@ -37,7 +37,7 @@ describe('IniciarClasePage', () => {
       roleId: 0,
       secondSurname: '',
     };
-    const mockClasses: classes = { subject: 'Math', date: '2023-11-20' };
+    const mockClasses: Classes = { id: 0, subject: 'Math', date: new Date() };
 
     component.user = mockUser;
     component.classes = mockClasses;
