@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/User';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -14,7 +15,7 @@ export class UsersService {
   user?: User;
 
   constructor(private http: HttpClient) {}
-  url = 'https://spsgftc7-3000.brs.devtunnels.ms/'; // http://127.0.0.1:3000/login
+  url = 'https://spsgftc7-3000.brs.devtunnels.ms/login'; // http://127.0.0.1:3000/login
 
   async login(email: string, password: string): Promise<User> {
     return new Promise<User>((resolve, reject) => {

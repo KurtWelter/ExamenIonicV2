@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class ClassAtendanceService {
   constructor(private http: HttpClient) {}
-  url = 'https://spsgftc7-3000.brs.devtunnels.ms/'; //http://127.0.0.1:3000/classAttendance
+  url = 'https://spsgftc7-3000.brs.devtunnels.ms/classAttendance'; //http://127.0.0.1:3000/classAttendance
 
   async getClasses(): Promise<Classes[]> {
     return new Promise<Classes[]>((resolve, reject) => {
