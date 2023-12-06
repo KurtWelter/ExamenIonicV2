@@ -7,6 +7,8 @@
 <ion-content>
   <ion-card class="custom-card" *ngFor="let class of classes">
     <ion-card-header>
+      <ion-card-subtitle>Seccion:{{class.id}}</ion-card-subtitle>
+
       <ion-card-title>{{class.subject}}</ion-card-title>
     </ion-card-header>
     <ion-button
